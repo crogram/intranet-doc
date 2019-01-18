@@ -1,6 +1,8 @@
 # 使用 acme.sh 申请 Let’s Encrypt 域名证书
 
-**如何使用 acme.sh**，这里从 GitHub 下载安装
+**如何使用 acme.sh**
+
+这里从 acme.sh 的仓库 [https://github.com/Neilpang/acme.sh.git](https://github.com/Neilpang/acme.sh.git) 下载安装
 
 下载 acme.sh
 
@@ -69,16 +71,16 @@ acme.sh --uninstall
 **如何用 acme.sh 签发证书**
 
 ```shell
-# 利用文件路径访问的方式验证域名
+# 利用文件路径访问的方式验证域名所有权
 acme.sh --issue -d github.com --webroot /home/www/github.com/
 
-# 利用已安装 Apache 验证域名
+# 利用已安装 Apache 验证域名所有权
 acme.sh --issue -d github.com --apache
 
-# 利用已安装 Nginx 验证域名
+# 利用已安装 Nginx 验证域名所有权
 acme.sh --issue -d github.com --nginx
 
-# 利用脚本自带的 webserver 验证域名
+# 利用脚本自带的 webserver 验证域名所有权
 acme.sh --issue -d github.com --standalone
 
 # 单个域名签发证书
@@ -96,9 +98,9 @@ acme.sh --issue --dns dns_cf -d *.github.com
 
 ```shell
 acme.sh --installcert -d github.com \
-		--key-file			/etc/nginx/ssl/github.com.key \
-		--fullchain-file	/etc/nginx/ssl/github.com.cer \
-		--reloadcmd			"service nginx force-reload"
+--key-file /etc/nginx/ssl/github.com.key \
+--fullchain-file /etc/nginx/ssl/github.com.cer \
+--reloadcmd "service nginx force-reload"
 ```
 
 安装证书，将证书部署到服务器，将配置信息写入对应域名配置文件，下面是 nginx 配置
@@ -106,10 +108,9 @@ acme.sh --installcert -d github.com \
 ```nginx
 server {
     listen 443 ssl;
-	server_name github.com www.github.com;
+    server_name github.com www.github.com;
     ssl on;
     ssl_certificate      /etc/nginx/ssl/github.com.cer;
     ssl_certificate_key  /etc/nginx/ssl/github.com.key;
 }
 ```
-
