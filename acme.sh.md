@@ -8,8 +8,14 @@
 git clone https://github.com/Neilpang/acme.sh.git
 ```
 
-安装 acme.sh，这里指定安装到目录 /usr/local/acme.sh，其它相关参数请参照官方文档
+安装 acme.sh
 
+```shell
+cd acme.sh
+./acme.sh --install
+```
+
+安装 acme.sh 到指定目录 /usr/local/acme.sh，其它相关参数请参照官方文档
 ```shell
 cd acme.sh
 ./acme.sh --install \
@@ -18,10 +24,16 @@ cd acme.sh
 --useragent  "the Intranet Panel"
 ```
 
-使用 acme.sh 命令，需要重载 .bashrc 或重新登陆使命令 acme.sh 生效，或者直接使用绝对路径命令 `/usr/local/acme.sh/acme.sh`
+使用 acme.sh 命令，需要重载 ~/.bashrc 使命令 acme.sh 生效
 
 ```shell
 source ~/.bashrc
+```
+
+或重新登陆使命令 acme.sh 生效，或者直接使用绝对路径命令
+
+```shell
+/usr/local/acme.sh/acme.sh -- version
 ```
 
 更新 acme.sh
@@ -84,9 +96,9 @@ acme.sh --issue --dns dns_cf -d *.github.com
 
 ```shell
 acme.sh --installcert -d github.com \
-		--key-file /etc/nginx/ssl/github.com.key \
-		--fullchain-file /etc/nginx/ssl/github.com.cer \
-		--reloadcmd "service nginx force-reload"
+		--key-file			/etc/nginx/ssl/github.com.key \
+		--fullchain-file	/etc/nginx/ssl/github.com.cer \
+		--reloadcmd			"service nginx force-reload"
 ```
 
 安装证书，将证书部署到服务器，将配置信息写入对应域名配置文件，下面是 nginx 配置
