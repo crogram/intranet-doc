@@ -1,1 +1,1 @@
-# intranet-doc
+# Docs for InPanel
